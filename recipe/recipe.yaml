@@ -16,14 +16,15 @@ build:
     - ls -lah
     - cp -r bin "$PREFIX/bin"
     - shellcheck "$PREFIX/bin/check-glibc"
-  number: 0
+  number: 1
 
 requirements:
   build:
     - shellcheck
   run:
     - __unix
-    - patchelf >=0.12
+    # https://github.com/NixOS/patchelf/issues/492
+    - patchelf >=0.12,<0.18.0               # [linux]
 
 tests:
   - requirements:
